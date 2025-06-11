@@ -149,10 +149,10 @@ def generate_pie_chart(values):
     # Asegurar que la suma de los valores sea mayor que cero para evitar errores en el gráfico circular
     if sum(values) > 0:
         wedges, texts, autotexts = ax.pie(values,
-                                         colors=colors,
-                                         autopct='%1.1f%%',
-                                         startangle=90,
-                                         wedgeprops={'edgecolor': 'black'})
+                                          colors=colors,
+                                          autopct='%1.1f%%',
+                                          startangle=90,
+                                          wedgeprops={'edgecolor': 'black'})
 
         # Añadir leyenda fuera del gráfico para mayor claridad
         ax.legend(wedges, categories,
@@ -202,6 +202,7 @@ def main():
             st.image(img_path_relative, caption="", use_container_width=True)
         except FileNotFoundError:
             st.warning("La imagen 'crab1.png' no se encontró en la ruta esperada ('img/').")
+            # CÓDIGO MODIFICADO AQUÍ: cambiamos use_column_width a use_container_width
             st.image("https://placehold.co/400x300/cccccc/000000?text=Imagen+Cangrejo", caption="Placeholder de imagen", use_container_width=True)
 
 
@@ -229,8 +230,15 @@ def main():
         # --- Sección de Resumen de Producción ---
         st.subheader("Resumen de la Producción")
 
+        # ELIMINADO: Bloque CSS inyectado que causaba advertencia
+        # st.markdown("""
+        # <style type="text/css">
+        # #T_9c7bf_row0_col0, #T_9c7bf_row0_col1, #T_9c7bf_row1_col0, #T_9c7bf_row1_col1, #T_9c7bf_row2_col0, #T_9c7bf_row2_col1 { width: 300px; text-align: left;}
+        # </style>
+        # """, unsafe_allow_html=True)
+
         # Calcular valores de resumen
-        total_meat_crab = values[0] 
+        total_meat_crab = values[0]
         utility_kitchen = values[0] + values[2] # Peso de Carne + Peso de Caparazón
         waste = values[1] # Peso de Vísceras
 
@@ -245,9 +253,8 @@ def main():
         }
         df_summary = pd.DataFrame(summary_data)
         
-        # Mostrar la tabla de resumen usando st.dataframe para evitar el CSS visible
-        # Se añade hide_index=True para que no se muestre la columna de índices (0, 1, 2)
-        st.dataframe(df_summary.style.format(subset=["Peso (gramos)"], formatter="{:.2f}"), hide_index=True)
+        # CÓDIGO MODIFICADO AQUÍ: añadimos use_container_width=True a st.dataframe
+        st.dataframe(df_summary.style.format(subset=["Peso (gramos)"], formatter="{:.2f}"), hide_index=True, use_container_width=True)
 
         # --- Sección de Métricas del Modelo en Tabla ---
         st.subheader("Métricas de Evaluación del Modelo (Entrenamiento y Prueba)")
@@ -281,9 +288,8 @@ def main():
         # Identificar las columnas numéricas para el formato
         numeric_cols = [col for col in df_metrics.columns if col != "Métrica"]
 
-        # Aplicar el formato solo a las columnas numéricas y mostrar con st.dataframe
-        # También ocultamos el índice para una apariencia más limpia
-        st.dataframe(df_metrics.style.format(subset=numeric_cols, formatter="{:.2f}"), hide_index=True)
+        # CÓDIGO MODIFICADO AQUÍ: añadimos use_container_width=True a st.dataframe
+        st.dataframe(df_metrics.style.format(subset=numeric_cols, formatter="{:.2f}"), hide_index=True, use_container_width=True)
 
     elif inp_value > 100:
         st.info("¡Los cangrejos no pesan eso! Por favor, ingresa un valor de peso realista.")
