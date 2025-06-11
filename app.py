@@ -202,7 +202,7 @@ def main():
             st.image(img_path_relative, caption="", use_container_width=True)
         except FileNotFoundError:
             st.warning("La imagen 'crab1.png' no se encontró en la ruta esperada ('img/').")
-            st.image("https://placehold.co/400x300/cccccc/000000?text=Imagen+Cangrejo", caption="Placeholder de imagen", use_column_width=True)
+            st.image("https://placehold.co/400x300/cccccc/000000?text=Imagen+Cangrejo", caption="Placeholder de imagen", use_container_width=True)
 
 
     # Contenido principal de la aplicación
