@@ -1,1 +1,1 @@
-Esta es la url de la app: https://regresionlinealconcangrejos-ceypswhau9psostatanun2.streamlit.app/
+Podriamos predecir sabiendo el peso de un cangrejo, la cantidad de carne que contiene y el desperdicio que genera ? Encuentra la respueta a esa interrogante en esta url: https://regresionlinealconcangrejos-ceypswhau9psostatanun2.streamlit.app/ (es aplicacion con el algoritmo desplegado)
