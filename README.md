@@ -1,1 +1,1 @@
-Esta es la url de la app: https://crablinearregretion-cmoqvnxfftssfgfoba3kfn.streamlit.app/
+Esta es la url de la app: https://regresionlinealconcangrejos-ceypswhau9psostatanun2.streamlit.app/
